@@ -9,7 +9,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     main: path.join(__dirname,'src/js/app.js'),
-    style: path.join(__dirname, './src/css/style.css')
+    style: path.join(__dirname, './src/css/style.scss')
   },
   mode: 'development',
   devServer: {
