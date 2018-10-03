@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    main: path.join(__dirname,'src/js/app.js'),
+    main: path.join(__dirname, 'src/js/app.js'),
     style: path.join(__dirname, './src/css/style.scss')
   },
   mode: 'development',
@@ -26,19 +26,19 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use:  ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-            loader: "babel-loader"
+          loader: "babel-loader"
         }
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin('dist', {} ),
+    new CleanWebpackPlugin('dist', {}),
     new MiniCssExtractPlugin({
       filename: 'style.[hash].css',
     }),
@@ -50,7 +50,7 @@ module.exports = {
     }),
     new WebpackMd5Hash(),
     new CopyWebpackPlugin([
-      { from: './src/assets', to: './assets'}
+      {from: './src/assets', to: './assets'}
     ]),
     new webpack.HotModuleReplacementPlugin()
   ]
