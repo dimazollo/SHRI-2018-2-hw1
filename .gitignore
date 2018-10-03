@@ -1,3 +1,9 @@
+# IDEA project files
+.idea
+
+# mac os service directories
+**/.DS_Store
+
 # Logs
 logs
 *.log
@@ -59,3 +65,5 @@ typings/
 
 # next.js build output
 .next
+
+package-lock.json
