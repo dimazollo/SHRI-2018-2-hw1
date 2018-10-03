@@ -13,20 +13,15 @@
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">
-                <img srcset="/assets/Яндекс_Дом@1x.png 1x,
-                             /assets/Яндекс_Дом@2x.png 2x"
-                     src="/assets/Яндекс_Дом@1x.png"
-                     alt="Яндекс Дом">
+                <img src="/assets/yandex_house.svg" alt="Яндекс Дом">
             </div>
             <div class="header__menu-toggle">
-                <img srcset="/assets/icon_list_m@1x.png 1x,
-                             /assets/icon_list_m@2x.png 2x"
-                     src="/assets/icon_list_m@1x.png"
-                     alt="Menu">
+                <img src="/assets/icon_list_m.svg" alt="Menu">
             </div>
             <nav>
                 <ul class="header__header-menu">
-                    <li class="header-menu__menu-item header-menu__menu-item_active_true">Сводка</li>
+                    <li class="header-menu__menu-item header-menu__menu-item_active_true">События</li>
+                    <li class="header-menu__menu-item header-menu__menu-item_active_false">Сводка</li>
                     <li class="header-menu__menu-item header-menu__menu-item_active_false">Устройства</li>
                     <li class="header-menu__menu-item header-menu__menu-item_active_false">Сценарии</li>
                 </ul>
@@ -34,7 +29,8 @@
         </header>
 
         <main class="main">
-
+            <div></div>
+            <div></div>
         </main>
 
         <footer class="footer">
@@ -48,6 +44,11 @@
         </footer>
     </div>
 </div>
+
+<template>
+
+</template>
+
 <script src="<%=htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 </html>
