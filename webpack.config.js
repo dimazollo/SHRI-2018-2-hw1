@@ -50,7 +50,8 @@ module.exports = {
     }),
     new WebpackMd5Hash(),
     new CopyWebpackPlugin([
-      {from: './src/assets', to: './assets'}
+      {from: './src/assets', to: './assets'},
+      {from: './src/data', to: './data'}
     ]),
     new webpack.HotModuleReplacementPlugin()
   ]
