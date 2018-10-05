@@ -1,0 +1,32 @@
+@mixin hover-transition {
+  transition: .15s ease;
+}
+
+// $v-position can be "top" or "bottom"
+@mixin tile-control($v-position) {
+  position: absolute;
+  #{$v-position}: 24px;
+  right: 24px;
+  width: 17px;
+  height: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  & > img {
+    //box-shadow: 0 2px 6px $tile-color-shadow;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin btn-style-reset {
+  border: none;
+  background: none;
+  color: inherit;
+  line-height: normal;
+  padding: 0;
+}

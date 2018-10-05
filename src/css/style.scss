@@ -1,7 +1,21 @@
+@import "vars.scss";
+@import "mixin.scss";
+
+@import "reset.scss";
+
 @import "header.scss";
 @import "main.scss";
 @import "footer.scss";
 
-html {
+html, body {
   font-family: Arial, sans-serif;
+  color: $primary-color;
+  height: 100%;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 92px auto 64px;
+  min-height: 100vh;
 }

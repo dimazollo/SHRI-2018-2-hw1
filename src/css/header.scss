@@ -1,32 +1,38 @@
 .header {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background-color: $primary-background-color;
+
+  &__logo {
+    margin-left: 40px;
+    margin-right: 54px;
+  }
+
+  &__header-menu {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__menu-toggle {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+.wrapper-header {
+  border-bottom: 1px solid $section-border-color;
   position: sticky;
   z-index: 100;
   top: 0;
-  width: 100%;
-  height: 92px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #F0F0F0;
-  background-color: #FFFFFF;
-  padding: 0 40px
-}
-
-.header__logo {
-  margin-right: 54px;
-}
-
-.header__header-menu {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #333333;
-}
-
-.header__menu-toggle {
-  display: none;
-  cursor: pointer;
 }
 
 .header-menu__menu-item {
@@ -40,14 +46,17 @@
     color: #cc0000;
     text-shadow: 0 0 4px #cc000022;
   }
-}
 
-.header-menu__menu-item_active_true {
-  opacity: 1;
-}
 
-.header-menu__menu-item_active_false {
-  opacity: 0.6;
+  &_active {
+    &_true {
+      opacity: 1;
+    }
+
+    &_false {
+      opacity: 0.6;
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -56,26 +65,31 @@
     border-bottom: none;
     padding-left: 20px;
     padding-right: 20px;
-  }
 
-  .header__logo {
-    margin-right: 54px;
-    flex: 1 0 auto;
-  }
+    &__logo {
+      margin-right: 54px;
+      margin-left: 0;
+      flex: 1 0 auto;
+    }
 
-  .header__header-menu {
-    padding: 0;
-    margin: 0;
-    display: none;
-    position: absolute;
-    background-color: #FFFFFF;
-    z-index: 100;
-    left: 0;
-    top: 64px;
-    width: 100%;
+    &__header-menu {
+      padding: 0;
+      margin: 0;
+      display: none;
+      position: absolute;
+      background-color: #FFFFFF;
+      z-index: 100;
+      left: 0;
+      top: 64px;
+      width: 100%;
 
-    &:first-child {
-      border-top: 1px solid #F0F0F0;
+      &:first-child {
+        border-top: 1px solid #F0F0F0;
+      }
+    }
+
+    &__menu-toggle {
+      display: inline-block;
     }
   }
 
@@ -86,7 +100,4 @@
     border-bottom: 1px solid #F0F0F0;
   }
 
-  .header__menu-toggle {
-    display: inline-block;
-  }
 }
