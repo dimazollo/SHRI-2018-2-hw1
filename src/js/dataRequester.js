@@ -1,7 +1,7 @@
 export function getEventsObject() {
   let xhr = new XMLHttpRequest();
 
-  xhr.open('GET', '/data/events.json', false);
+  xhr.open('GET', 'data/events.json', false);
   xhr.send();
 
   let data;

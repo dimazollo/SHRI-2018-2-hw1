@@ -35,16 +35,16 @@ export function generateTile(container, event) {
 
   let template =
     `<div class="event__close-btn">
-          <img src="/assets/icons/cross-black.svg" alt="&#215;">
+          <img src="assets/icons/cross-black.svg" alt="&#215;">
         </div>
         <div class="event__open-btn">
-          <img src="/assets/icons/goto-black.svg" alt=">">
+          <img src="assets/icons/goto-black.svg" alt=">">
         </div>
     
         <div class="event__header" style="${!tileHasContent ? 'padding-bottom: 20px' : ''}">
           <div class="header__name">
             <div class="icon">
-              <img src="/assets/icons/${event.icon}-${iconColor}.svg">
+              <img src="assets/icons/${event.icon}-${iconColor}.svg">
             </div>
             <div class="text">${event.title}</div>
           </div>
@@ -76,15 +76,15 @@ export function generateTile(container, event) {
     } else if (event.icon === 'stats') {
       template +=
         `<div class="content__image">
-           <img src="/assets/Richdata.svg">
+           <img src="assets/Richdata.svg">
          </div>`
     } else if (event.data && event.data.image) {
       template +=
         `<div class="content__image">
-           <img src="/assets/robot-cleaner.png" 
-                srcset="/assets/robot-cleaner@3x.png 3x,
-                        /assets/robot-cleaner@2x.png 2x,
-                        /assets/robot-cleaner.png 1x">
+           <img src="assets/robot-cleaner.png" 
+                srcset="assets/robot-cleaner@3x.png 3x,
+                        assets/robot-cleaner@2x.png 2x,
+                        assets/robot-cleaner.png 1x">
        </div>`
     } else if (event.icon === 'music') {
       template +=
@@ -101,8 +101,8 @@ export function generateTile(container, event) {
             </div>
             <div class="second-line">
               <div class="player__buttons">
-                <img src="/assets/icons/Prev.svg">
-                <img src="/assets/icons/Next.svg">
+                <img src="assets/icons/Prev.svg">
+                <img src="assets/icons/Next.svg">
               </div>
               <input type="range" class="player__volume-range">
               <div class="player__volume">${event.data.volume}%</div>
