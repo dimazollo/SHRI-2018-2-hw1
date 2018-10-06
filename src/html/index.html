@@ -20,7 +20,7 @@
           <img src="/assets/yandex_house.svg" alt="Яндекс Дом">
         </div>
         <div class="header__menu-toggle">
-          <img src="/assets/icon_list_m.svg" alt="Menu">
+          <img src="/assets/icons/icon_list_m.svg" alt="Menu">
         </div>
         <nav>
           <ul class="header__header-menu">
@@ -35,67 +35,8 @@
     <div class="wrapper-main">
       <main class="main">
         <div class="main__header">Лента событий</div>
-        <div class="main__events-grid">
-
-          <div class="events-grid__event m-size_large exception">
-            <div class="event__close-btn">
-              <img src="/assets/icons/cross-black.svg" alt="&#215;">
-            </div>
-            <div class="event__open-btn">
-              <img src="/assets/icons/goto-black.svg" alt=">">
-            </div>
-
-            <div class="event__header">
-              <div class="header__name">
-                <div class="icon">
-                  <img src="/assets/icons/stats-black.svg">
-                </div>
-                <div class="text">Еженедельный отчет по расходам ресурсов</div>
-              </div>
-              <div class="header__status">
-                <div class="description">сенсоры потребления</div>
-                <div class="datetime">19:00, сегодня</div>
-              </div>
-            </div>
-
-            <div class="event__content">
-              <div class="content__description">Так держать!
-                За последнюю неделю вы потратили
-                на 10% меньше ресурсов, чем неделей ранее.</div>
-              <div class="content__status">
-                <div class="param">
-                  <span class="param__name">Температура:</span>
-                  <span class="param__value">24 C</span>
-                </div>
-                <div class="param">
-                  <span class="param__name">Влажность:</span>
-                  <span class="param__value">80%</span>
-                </div>
-
-              </div>
-              <!-- FIXME -->
-              <!--<div class="event-content__graph"></div>-->
-              <div class="content__image">
-                <img src="/assets/Richdata.svg">
-              </div>
-              <div class="content__player"></div>
-              <div class="content__dialog-btns">
-                <button class="dialog-btn primary">Да</button>
-                <button class="dialog-btn secondary">Нет</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="events-grid__event m-size_small"></div>
-          <div class="events-grid__event m-size_small"></div>
-          <div class="events-grid__event m-size_small"></div>
-          <div class="events-grid__event m-size_medium"></div>
-          <div class="events-grid__event m-size_medium"></div>
-          <div class="events-grid__event m-size_medium"></div>
-          <div class="events-grid__event m-size_medium"></div>
-          <div class="events-grid__event m-size_large"></div>
-          <div class="events-grid__event m-size_small"></div>
-          <div class="events-grid__event m-size_small"></div>
+        <div id="events" class="main__events-grid">
+          <!-- Event tiles should be inserted here -->
         </div>
       </main>
     </div>
@@ -105,15 +46,12 @@
         <li><a class="footer-menu__menu-item" href="#">Обратная связь</a></li>
         <li><a class="footer-menu__menu-item" href="#">Разработчикам</a></li>
         <li><a class="footer-menu__menu-item" href="#">Условия использования</a></li>
+        <li><a class="footer-menu__menu-item" href="/assets/license.pdf" download>Авторские права</a></li>
       </ul>
       <span class="footer__copyright">&copy;&thinsp;2001-2017 ООО &laquo;Яндекс&raquo;</span>
     </footer>
   </div>
 </div>
-
-<template>
-
-</template>
 
 <script src="<%=htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>

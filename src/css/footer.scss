@@ -38,13 +38,14 @@
 @media screen and (max-width: 576px) {
   .footer {
     height: 100px;
-    padding: 10px 0;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 10px 20px;
 
     &__footer-menu {
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+
       display: grid;
-      min-width: 375px;
+      //min-width: px;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 24px 24px;
       justify-content: center;
