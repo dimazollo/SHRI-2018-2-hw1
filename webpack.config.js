@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, 'src/js/app.js'),
+    main: path.join(__dirname, './src/js/app.ts'),
     style: path.join(__dirname, './src/css/style.scss')
   },
   mode: 'development',
@@ -29,13 +29,16 @@ module.exports = {
         use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "awesome-typescript-loader"
         }
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   },
   plugins: [
     new CleanWebpackPlugin('dist', {}),
