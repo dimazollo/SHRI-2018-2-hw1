@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+import { ISmartHouseEvent } from './interfaces';
+
 /*
   event = {
     type: [info, critical],
@@ -12,29 +12,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
     size: [l, m, s]
   }
 */
-function generateTile(container, event) {
-    const iconColor = event.type === 'critical' ? 'white' : 'black';
-    let sizeStyle = '';
-    switch (event.size) {
-        case 'l':
-            sizeStyle = 'm-size_large';
-            break;
-        case 'm':
-            sizeStyle = 'm-size_medium';
-            break;
-        case 's':
-            sizeStyle = 'm-size_small';
-            break;
-        default:
-            break;
-    }
-    const newHtmlElement = document.createElement('div');
-    newHtmlElement.classList.add('events-grid__event');
-    newHtmlElement.classList.add(sizeStyle);
-    if (event.type === 'critical')
-        newHtmlElement.classList.add('critical');
-    const tileHasContent = event.data || event.description;
-    let template = `<div class="event__close-btn">
+
+export function generateTile(container : HTMLElement, event : ISmartHouseEvent) {
+  const iconColor = event.type === 'critical' ? 'white' : 'black';
+
+  let sizeStyle : string = '';
+  switch (event.size) {
+    case 'l':
+      sizeStyle = 'm-size_large';
+      break;
+    case 'm':
+      sizeStyle = 'm-size_medium';
+      break;
+    case 's':
+      sizeStyle = 'm-size_small';
+      break;
+    default:
+      break;
+  }
+  const newHtmlElement = document.createElement('div');
+  newHtmlElement.classList.add('events-grid__event');
+  newHtmlElement.classList.add(sizeStyle);
+  if (event.type === 'critical') newHtmlElement.classList.add('critical');
+
+  const tileHasContent = event.data || event.description;
+
+  let template =
+    `<div class="event__close-btn">
         <img src="assets/icons/cross-black.svg" alt="&#215;">
       </div>
       <div class="event__open-btn">
@@ -53,14 +57,17 @@ function generateTile(container, event) {
           <div class="datetime">${event.time}</div>
         </div>
       </div>`;
-    if (tileHasContent) {
-        template += `<div class="event__content">`;
-        if (event.description) {
-            template += `<div class="content__description">${event.description}</div>`;
-        }
-        if (event.icon === 'thermal') {
-            template +=
-                `<div class="content__status">
+
+  if (tileHasContent) {
+    template += `<div class="event__content">`;
+
+    if (event.description) {
+      template += `<div class="content__description">${event.description}</div>`;
+    }
+
+    if (event.icon === 'thermal') {
+      template +=
+        `<div class="content__status">
           <div class="param">
             <span class="param__name">Температура:</span>
             <span class="param__value">${event.data.temperature} C</span>
@@ -70,25 +77,22 @@ function generateTile(container, event) {
             <span class="param__value">${event.data.humidity}%</span>
           </div>
         </div>`;
-        }
-        else if (event.icon === 'stats') {
-            template +=
-                `<div class="content__image">
+    } else if (event.icon === 'stats') {
+      template +=
+        `<div class="content__image">
            <img src="assets/Richdata.svg">
          </div>`;
-        }
-        else if (event.data && event.data.image) {
-            template +=
-                `<div class="content__image">
+    } else if (event.data && event.data.image) {
+      template +=
+        `<div class="content__image">
            <img src="assets/robot-cleaner.png"
                 srcset="assets/robot-cleaner@3x.png 3x,
                         assets/robot-cleaner@2x.png 2x,
                         assets/robot-cleaner.png 1x">
          </div>`;
-        }
-        else if (event.icon === 'music') {
-            template +=
-                `<div class="content__player player">
+    } else if (event.icon === 'music') {
+      template +=
+        `<div class="content__player player">
             <div class="first-line">
               <div class="player__albumcover"><img src="${event.data.albumcover}"></div>
               <div class="first-line__right-block">
@@ -108,22 +112,20 @@ function generateTile(container, event) {
               <div class="player__volume">${event.data.volume}%</div>
             </div>
         </div>`;
+    } else if (event.data && event.data.buttons) {
+      template += '<div class="content__dialog-btns">';
+      for (let i = 0; i < event.data.buttons.length; i++) {
+        if (i !== 0) {
+          template += `<button class="dialog-btn secondary">${event.data.buttons[i]}</button>`;
+        } else {
+          template += `<button class="dialog-btn primary">${event.data.buttons[i]}</button>`;
         }
-        else if (event.data && event.data.buttons) {
-            template += '<div class="content__dialog-btns">';
-            for (let i = 0; i < event.data.buttons.length; i++) {
-                if (i !== 0) {
-                    template += `<button class="dialog-btn secondary">${event.data.buttons[i]}</button>`;
-                }
-                else {
-                    template += `<button class="dialog-btn primary">${event.data.buttons[i]}</button>`;
-                }
-            }
-        }
-        template += `</div>`;
+      }
     }
-    newHtmlElement.innerHTML = template;
-    container.insertBefore(newHtmlElement, null);
+
+    template += `</div>`;
+  }
+
+  newHtmlElement.innerHTML = template;
+  container.insertBefore(newHtmlElement, null);
 }
-exports.generateTile = generateTile;
-//# sourceMappingURL=templates.js.map

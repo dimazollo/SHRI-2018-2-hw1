@@ -1,16 +1,20 @@
-export function getEventsObject() {
-  let xhr = new XMLHttpRequest();
-
-  xhr.open('GET', 'data/events.json', false);
-  xhr.send();
-
-  let data;
-
-  if (xhr.status === 200) {
-    data = xhr.responseText; // responseText -- текст ответа.
-  } else {
-    alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
-  }
-
-  return JSON.parse(data);
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+function getEventsObject() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield fetch('data/events.json')
+            .then(response => response
+            .text()
+            .then(text => JSON.parse(text)));
+    });
 }
+exports.getEventsObject = getEventsObject;
+//# sourceMappingURL=dataRequester.js.map
