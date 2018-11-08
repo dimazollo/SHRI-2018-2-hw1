@@ -10,21 +10,19 @@ export const actions: Array<{type: string, handler: IActionHandler}> = [
   {
     type: 'close-event',
     handler: {
-      handleAction(previousState, payload) {
-        const newState = Object.assign({}, previousState);
-        newState.events = newState.events.filter(
+      handleAction(storeState, payload) {
+        storeState.events = storeState.events.filter(
           (event: ISmartHouseEvent) => event.id !== payload.eventId);
-        return newState;
+        return storeState;
       },
     },
   },
   {
     type: 'set-events',
     handler: {
-      handleAction(previousState, eventsObject) {
-        const newState = Object.assign({}, previousState);
-        newState.events = eventsObject.events;
-        return newState;
+      handleAction(storeState, eventsObject) {
+        storeState.events = eventsObject.events;
+        return storeState;
       },
     },
   },

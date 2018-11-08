@@ -15,7 +15,7 @@ export default class Store extends HandlerManager {
   }
 
   public apply(action: Action) {
-    this.state = this.handleAction(this.state, action);
+    this.state = this.handleAction(Object.assign({}, this.state), action);
     this.eventEmitter.broadcast(
       'change',
       Object.assign({}, this.state),
