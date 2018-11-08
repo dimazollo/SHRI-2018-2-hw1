@@ -1,4 +1,3 @@
-// получает информацию от Actions
 import Store from './Store';
 import Action from './Action';
 
