@@ -17,7 +17,8 @@ export default class MyFlux {
     this.dispatcher.registerStore(this.store);
     actions.forEach(action =>
       this.store.registerHandler(action.type, action.handler));
-    views.forEach(view => view.connectToFlux(this.store));
+    // Subscribe views to change event
+    views.forEach(view => this.store.eventEmitter.subscribe('change', view));
   }
 
   public dispatch(action: Action) {

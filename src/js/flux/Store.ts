@@ -1,10 +1,11 @@
 import ILooseObject from './interface/ILooseObject';
 import Action from './Action';
 import HandlerManager from './HandlerManager';
-import { fluxChangeEvent } from './interface/eventTypes';
+import EventEmitter from './EventEmitter';
 
 export default class Store extends HandlerManager {
   private state: ILooseObject = {};
+  public eventEmitter: EventEmitter = new EventEmitter();
 
   constructor(state?: ILooseObject) {
     super();
@@ -15,7 +16,10 @@ export default class Store extends HandlerManager {
 
   public apply(action: Action) {
     this.state = this.handleAction(this.state, action);
-    document.dispatchEvent(new CustomEvent(fluxChangeEvent));
+    this.eventEmitter.broadcast(
+      'change',
+      Object.assign({}, this.state),
+    );
   }
 
   public getState() {
