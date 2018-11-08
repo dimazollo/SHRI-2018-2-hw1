@@ -18,10 +18,6 @@ export default class Store extends HandlerManager {
     document.dispatchEvent(new CustomEvent(fluxChangeEvent));
   }
 
-  public setState(newState: ILooseObject) {
-    this.state = newState;
-  }
-
   public getState() {
     return this.state;
   }
