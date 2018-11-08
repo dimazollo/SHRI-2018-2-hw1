@@ -1,4 +1,6 @@
 import { ISmartHouseEvent } from './interfaces';
+import { myFlux } from './app';
+import Action from './flux/Action';
 
 /*
   event = {
@@ -8,34 +10,27 @@ import { ISmartHouseEvent } from './interfaces';
     time: "string",
     description: "string",
     icon: [stats, key, robot-cleaner, router, thermal, ac, music, fridge, battery, cam, kettle],
-    data: [],
+    data: any,
     size: [l, m, s]
   }
 */
 
-export function generateTile(container : HTMLElement, event : ISmartHouseEvent) {
+export function generateTile(event: ISmartHouseEvent) {
   const iconColor = event.type === 'critical' ? 'white' : 'black';
 
-  let sizeStyle : string = '';
-  switch (event.size) {
-    case 'l':
-      sizeStyle = 'm-size_large';
-      break;
-    case 'm':
-      sizeStyle = 'm-size_medium';
-      break;
-    case 's':
-      sizeStyle = 'm-size_small';
-      break;
-    default:
-      break;
-  }
+  const tileSizeStyleMap: { [key: string]: string } = {
+    l: 'm-size_large',
+    m: 'm-size_medium',
+    s: 'm-size_small',
+  };
+  const sizeStyle: string = tileSizeStyleMap[event.size];
+
   const newHtmlElement = document.createElement('div');
   newHtmlElement.classList.add('events-grid__event');
   newHtmlElement.classList.add(sizeStyle);
   if (event.type === 'critical') newHtmlElement.classList.add('critical');
 
-  const tileHasContent = event.data || event.description;
+  const tileHasContent = Boolean(event.data || event.description);
 
   let template =
     `<div class="event__close-btn">
@@ -127,5 +122,16 @@ export function generateTile(container : HTMLElement, event : ISmartHouseEvent) 
   }
 
   newHtmlElement.innerHTML = template;
-  container.insertBefore(newHtmlElement, null);
+
+  // Invoke action to delete card
+  const closeBtn = newHtmlElement.querySelector('.event__close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      myFlux.dispatch(new Action('close-event', { eventId: event.id }));
+    });
+  } else {
+    throw new Error('Card does not have close button');
+  }
+
+  return newHtmlElement;
 }
