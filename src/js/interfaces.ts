@@ -1,4 +1,5 @@
 export interface ISmartHouseEvent {
+  id: string;
   type: string;
   title: string;
   source: string;
