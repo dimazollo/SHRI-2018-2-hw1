@@ -1,24 +1,24 @@
 import ILooseObject from './interface/ILooseObject';
-import View from './View';
+import IEventHandler from './interface/IEventHandler';
 
 export default class EventEmitter {
   private subscribers: {
-    [eventType: string]: Array<View>;
+    [eventType: string]: Array<IEventHandler>;
   } = {};
 
-  subscribe(eventType: string, view: View) {
+  subscribe(eventType: string, subscriber: IEventHandler) {
     if (!this.subscribers[eventType]) {
       this.subscribers[eventType] = [];
     }
-    this.subscribers[eventType].push(view);
+    this.subscribers[eventType].push(subscriber);
   }
 
-  unsubscribe(eventType: string, view: View) {
+  unsubscribe(eventType: string, subscriberToRemove: IEventHandler) {
     this.subscribers[eventType] =
-      this.subscribers[eventType].filter(subscriber => subscriber !== view);
+      this.subscribers[eventType].filter(subscriber => subscriber !== subscriberToRemove);
   }
 
-  broadcast(eventType:string, state: ILooseObject) {
-    this.subscribers[eventType].forEach(subscriber => subscriber.update(state));
+  broadcast(eventType: string, state: ILooseObject) {
+    this.subscribers[eventType].forEach(subscriber => subscriber.handleEvent(eventType, state));
   }
 }

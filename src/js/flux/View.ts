@@ -1,6 +1,7 @@
 import ILooseObject from './interface/ILooseObject';
+import IEventHandler from './interface/IEventHandler';
 
-export default class View {
+export default class View implements IEventHandler {
   private rootElement: Element;
   private render: (state: ILooseObject) => Element;
 
@@ -20,5 +21,15 @@ export default class View {
       this.rootElement.removeChild(this.rootElement.firstChild);
     }
     this.rootElement.insertBefore(newView, null);
+  }
+
+  handleEvent(eventType: string, eventData: ILooseObject) {
+    switch (eventType) {
+      case 'change':
+        this.update(eventData);
+        break;
+      default:
+        break;
+    }
   }
 }
